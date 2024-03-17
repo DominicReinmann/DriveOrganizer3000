@@ -20,7 +20,7 @@ var destdir = Console.ReadLine();
 var logDir = $"{rootdir}\\Logs\\";
 
 GetSubdirectories(rootdir, subdir);
-CreateDirIfNotExist();
+CreateDirIfNotExist(destdir);
 using (StreamWriter sw = new StreamWriter($"{logDir}DirectoryLog_{DateOnly}.log", true))
 {
     sw.WriteLine($"Start: {DateTime.Now}");
@@ -36,7 +36,7 @@ using (StreamWriter sw = new StreamWriter($"{logDir}DirectoryLog_{DateOnly}.log"
                     GetFileExtension(subdirectory, extension, files);
                     foreach (var file in files)
                     {
-                        MoveFile(file, "C:\\var\\");
+                        MoveFile(file, $"{destdir}\\{extension}";
                     }
                 }
                 else
@@ -52,20 +52,21 @@ using (StreamWriter sw = new StreamWriter($"{logDir}DirectoryLog_{DateOnly}.log"
     }
     sw.WriteLine($"End: {DateTime.Now}");
 }
-public void CreateDirIfNotExist()
+public void CreateDirIfNotExist(string destDir)
 {
     try
     {
         foreach (var fu in dirs)
         {
-            Directory.CreateDirectory(fu);
+            Directory.CreateDirectory($"{destDir}\\fu");
         }
     }
     catch (Exception ex)
     {
         System.Console.WriteLine($"Exception: {ex}");
     }
-};
+}
+
 public void GetFileExtension(string directory, string extension, List<string> files)
 {
     try
